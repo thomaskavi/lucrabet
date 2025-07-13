@@ -5,9 +5,12 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +19,14 @@ public class RegistroOperacao {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "plataforma_id", nullable = false)
+  private Plataforma plataforma;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "conta_id", nullable = false)
+  private Conta conta;
 
   @Column(nullable = false)
   private LocalDate dataOperacao;
@@ -38,9 +49,12 @@ public class RegistroOperacao {
   public RegistroOperacao() {
   }
 
-  public RegistroOperacao(Long id, LocalDate dataOperacao, BigDecimal valorDeposito, String nomeSlotGiros,
-      String situacao, BigDecimal valorLucro, Boolean saqueCompletoFeito) {
+  public RegistroOperacao(Long id, Plataforma plataforma, Conta conta, LocalDate dataOperacao,
+      BigDecimal valorDeposito, String nomeSlotGiros, String situacao,
+      BigDecimal valorLucro, Boolean saqueCompletoFeito) {
     this.id = id;
+    this.plataforma = plataforma;
+    this.conta = conta;
     this.dataOperacao = dataOperacao;
     this.valorDeposito = valorDeposito;
     this.nomeSlotGiros = nomeSlotGiros;
