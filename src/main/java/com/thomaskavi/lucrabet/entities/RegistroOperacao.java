@@ -119,6 +119,22 @@ public class RegistroOperacao {
     this.saqueCompletoFeito = saqueCompletoFeito;
   }
 
+  public Plataforma getPlataforma() {
+    return plataforma;
+  }
+
+  public void setPlataforma(Plataforma plataforma) {
+    this.plataforma = plataforma;
+  }
+
+  public Conta getConta() {
+    return conta;
+  }
+
+  public void setConta(Conta conta) {
+    this.conta = conta;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
